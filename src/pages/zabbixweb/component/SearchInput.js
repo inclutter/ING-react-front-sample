@@ -1,21 +1,27 @@
-import { AutoComplete, Input } from 'antd'
 import React from 'react'
-import { SearchOutlined } from '@ant-design/icons';
+// import axios from 'axios';
 
-export default function ZabbixMain() {
-  function setKeyword(value) {}
-  function gotoUser(value) {}
+const MainButton = () =>  {
+  async function get() {
+    let response = await fetch('http://localhost:9000/study/getStudy', {
+
+      credentials: 'same-origin',
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    let json = await response.json();
+    return json;
+  }
 
   return (
-    <AutoComplete
-      value={keyword}
-      onChange={setKeyword}
-      onSelect={gotoUser}
-      style={{ width: '100%' }}
-      options={[]}
-      autoFocus
-    >
-    <Input size="large" placeholder="input here" prefix={<SearchOutlined />}/>
-  </AutoComplete>
-  )
+    <div>
+      <div>
+        <button onClick={get}>불러오기</button>
+      </div>
+    </div>
+  );
 }
+
+export default MainButton;

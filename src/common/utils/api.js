@@ -2,8 +2,15 @@ import axios from 'axios';
 import { API_HOST } from '../constant.js';
 import { message } from 'antd';
 
-
-export function callApi({ method = 'get', url }) {
+/**
+ *
+ * @param {object} param
+ * @param {'get' | 'post' =} param.method
+ * @param {string} param.url
+ * @param {object=} param.params
+ * @param {object=} param.data
+ */
+export function callApi({ method = 'get', url, params, data }) {
   return axios({
     url,
     method,
